@@ -14,8 +14,8 @@ def read_employees(csv_file_location):
                     employee_list.append(data)
     return employee_list
 
-employee_list = read_employees('employees.txt')
-print("TEST OUTPUT 1:\n")
+employee_list = read_employees("C:/Users/DAVID/Documents/My files/Coursera/Google-IT-Automation-with-Python/Using Python to Interact with the OS/Module 2/Graded Assessment/employees.txt")
+print("TEST OUTPUT 1:/n")
 print(employee_list)
 print('\n\n')
 
@@ -40,5 +40,5 @@ def write_report(dictionary, report_file):
                         file.write(str(k)+": "+str(dictionary[k])+"\n")
                 file.close()
 
-write_report(dictionary, "test_report.txt")
+write_report(dictionary, "C:/Users/DAVID/Documents/My files/Coursera/Google-IT-Automation-with-Python/Using Python to Interact with the OS/Module 2/Graded Assessment/test_report.txt")
 

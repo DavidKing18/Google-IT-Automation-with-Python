@@ -11,17 +11,6 @@ print()
 print(re.search(r"p.ng", "PingPong", re.IGNORECASE))
 print()
 
-def check_aei(text):
-    """ Returns bol for presence of aei"""
-    result = re.search(r"a.e.i", text, re.IGNORECASE)
-    return result != None
-
-print(check_aei("academia")) # True
-print(check_aei('aerial')) # False
-print(check_aei('paramedic')) # True
-print("\n\n")
-
-
 
 '''WILDCARDS AND CHARACTER CLASSES'''
 
@@ -32,18 +21,6 @@ print(re.search(r"[a-z]way", "what a way")) # None
 print(re.search("cloud[a-zA-Z0-9]", "cloudy")) # <re.Match object; span=(0, 6), match='cloudy'>
 print(re.search("cloud[a-zA-Z0-9]", "cloudy")) # <re.Match object; span=(0, 6), match='cloudy'>
 
-
-def check_punctuation(text):
-    """ Returns bol for presence of punctuation"""
-    result = re.search(r"[,.?']", text)
-    return result != None
-
-print(check_punctuation("This is a sentence that ends with a period.")) # True
-print(check_punctuation("This is a sentence that ends with a period")) # False
-print(check_punctuation("Aren't regular expressions awesome?")) # True
-print(check_punctuation("Wow! We're really picking up some steam now!")) # True
-print(check_punctuation("End of the line")) # False
-print()
 
 print(re.search(r"[a-zA-Z]", "This is a sentence with spaces.")) # <re.Match object; span=(0, 1), match='T'>
 print(re.search(r"[^a-zA-Z]", "This is a sentence with spaces.")) # <re.Match object; span=(4, 5), match=' '>
@@ -76,15 +53,41 @@ print(re.search(r"[Pp]each", "To each their own")) # None
 print()
 
 
-def repeating_letter_a(text):
-   result = re.search(r"[Aa]+.*a+", text)
-   return result != None
 
-print(repeating_letter_a("banana")) # True
-print(repeating_letter_a("pineapple")) # False
+''' ESCAPING CHARACTERS '''
 
-print(repeating_letter_a("Animal Kingdom")) # True
+import re
+print(re.search(r".com", "welcome")) # <re.Match object; span=(2, 6), match='lcom'>
+print(re.search(r"\.com", "welcome")) # None
+print(re.search(r"\.com", "mydomain.com")) # <re.Match object; span=(8, 12), match='.com'>
+print(re.search(r"\w*", "This is an example")) # <re.Match object; span=(0, 4), match='This'>
+print(re.search(r"\w*", "And_this_is_another.")) # <re.Match object; span=(0, 19), match='And_this_is_another'>
+print(re.search(r"\d", "Phone: 08023234002")) # <re.Match object; span=(7, 8), match='0'>
+print(re.search(r"\d*", "Phone: 8023234002")) # <re.Match object; span=(0, 0), match=''>
+print(re.search(r"\d\d\d\d\d\d\d\d\d", "Phone: 8023234002")) # <re.Match object; span=(7, 16), match='802323400'>
+print(re.search(r"\d\d\d\d\d\d\d\d\d\d", "Phone: 8023234002")) # <re.Match object; span=(7, 17), match='8023234002'>
+print(re.search(r"\s", "Phone: 8023234002")) # <re.Match object; span=(6, 7), match=' '>
+print(re.search(r"\d.*", "Phone:8023234002")) # <re.Match object; span=(6, 16), match='8023234002'>
+print((re.search(r"\d.*", "Phone:8023234002"))[0]) # 8023234002
+print((re.search(r"\s.*", "Phone:    8023234002"))) # <re.Match object; span=(6, 18), match='\t 8023234002'>
+print((re.search(r"\b.*", "Phone:    8023234002"))) # <re.Match object; span=(0, 18), match='Phone:\t 8023234002'>
+print((re.search(r"\b.*", "Test this"))) # <re.Match object; span=(0, 9), match='Test this'>
+print()
 
-print(repeating_letter_a("A is for apple")) # True
 
 
+
+''' REGULAR EXPRESSIONS IN ACTION '''
+
+print(re.search(r"A.*a", "Argentina")) # <re.Match object; span=(0, 9), match='Argentina'>
+print(re.search(r"A.*a", "Azerbaija")) # <re.Match object; span=(0, 9), match='Azerbaija'>
+print(re.search(r"A.*a", "Azerbaijan")) # <re.Match object; span=(0, 9), match='Azerbaija'>
+print(re.search(r"A.*a$", "Azerbaijan")) # None
+print(re.search(r"A.*a$", "Australia")) # <re.Match object; span=(0, 9), match='Australia'>
+print()
+
+pattern = r"^[A-Za-z_][a-zA-Z0-9_]*$"
+print(re.search(pattern, "_this_is_a_valid_variable_name")) # <re.Match object; span=(0, 30), match='_this_is_a_valid_variable_name'>
+print(re.search(pattern, "this isn't a valid variable name")) # None
+print(re.search(pattern, "vaiable1")) # <re.Match object; span=(0, 8), match='vaiable1'>
+print()

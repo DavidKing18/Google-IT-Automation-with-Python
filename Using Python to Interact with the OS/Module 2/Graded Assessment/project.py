@@ -3,8 +3,9 @@
 For this assessment, imagine you are an IT Specialist at a medium-sized company. The Human Resources Department at your company wants you to find out how many people are in each department. You need to write a Python script that reads a CSV file containing a list of the employees in the organization, counts how many people are in each department, and then generates a report using this information. The output of this script will be a plain text file.
 '''
 
-import os
 import csv
+
+
 def read_employees(csv_file_location):
     with open(csv_file_location) as file:
             csv.register_dialect('empDialect', skipinitialspace=True, strict=True)
@@ -15,9 +16,10 @@ def read_employees(csv_file_location):
     return employee_list
 
 employee_list = read_employees("C:/Users/DAVID/Documents/My files/Coursera/Google-IT-Automation-with-Python/Using Python to Interact with the OS/Module 2/Graded Assessment/employees.txt")
-print("TEST OUTPUT 1:/n")
+print("TEST OUTPUT 1:\n")
 print(employee_list)
 print('\n\n')
+
 
 def process_data(employee_list):
         department_list = []

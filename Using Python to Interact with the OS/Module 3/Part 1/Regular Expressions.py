@@ -12,7 +12,7 @@ print(result[1])
 '''
 grep thon "words.txt" - Interates through all the words(lines) in the text file and prints the word that have 'thon' in them.
 
-grep -i thon "words.txt" - to remove case-sensitivity \
+grep -i thon "words.txt" - to remove case-sensitivity 
 
 grep p.ck "words.txt" - Anchor character (.) represents any single character
 
@@ -26,7 +26,7 @@ grep cat$ "words.txt" - to search for all words that end with cat.
 '''
 findstr thon "words.txt" - Interates through all the words(lines) in the text file and prints the word that have 'thon' in them.
 
-findstr -i thon "words.txt" - to remove case-sensitivity \
+findstr -i thon "words.txt" - to remove case-sensitivity
 
 findstr p.ck "words.txt" - Anchor character (.) represents any single character
 

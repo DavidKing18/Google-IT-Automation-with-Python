@@ -32,7 +32,7 @@ rearrange_name("Hopper, Grace M.") # 'Grace M. Hopper'
 print()
 
 
-
+   
 
 ''' MORE ON REPITION QUALIFIERS '''
 
@@ -48,7 +48,7 @@ print(re.search(r"s\w{,20}", "I really like strawberries")) # <re.Match object; 
 
 
 def long_words(text):
-   pattern = r"\w{7,}"
+   pattern = r"\b[a-zA-Z]{7,}"
    result = re.findall(pattern, text)
    return result
 ...

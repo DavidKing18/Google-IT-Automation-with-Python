@@ -3,7 +3,7 @@
 
 import re
 def transform_record(record): 
-  new_record = re.sub(r"([\d-]+)", r"+1-\1", record)
+  new_record = re.sub(r"(\d{3}-\d)", r"+1-\1", record) # OR new_record = re.sub(r"([\d-]+)", r"+1-\1", record)
   return new_record
 
 print(transform_record("Sabrina Green,802-867-5309,System Administrator")) 
@@ -23,7 +23,7 @@ print('\n\n')
 
 # Question 2
 def multi_vowel_words(text):
-  pattern = r"\b[a-zA-Z]*[aeiou]{3}[a-z]*\b"
+  pattern = r"\b[a-zA-Z]*[aeiou]{3,}[a-z]*\b" # OR pattern = r"\w*[aeiouAEIOU]{3,}\w*" -ish
   result = re.findall(pattern, text)
   return result
 
@@ -48,7 +48,7 @@ print('\n\n')
 # The transform_comments function converts comments in a Python script into those usable by a C compiler. This means looking for text that begins with a hash mark (#) and replacing it with double slashes (//), which is the C single-line comment indicator. For the purpose of this exercise, we'll ignore the possibility of a hash mark embedded inside of a Python command, and assume that it's only used to indicate a comment. We also want to treat repetitive hash marks (##), (###), etc., as a single comment indicator, to be replaced with just (//) and not (#//) or (//#). Fill in the parameters of the substitution method to complete this function: 
 
 def transform_comments(line_of_code):
-  result = re.sub(r"#{1,}", "//", line_of_code)
+  result = re.sub(r"#+", "//", line_of_code)
   return result
 
 print(transform_comments("### Start of program")) 
@@ -69,14 +69,10 @@ print("\n\n")
 
 import re
 def convert_phone_number(phone):
-  if not re.search(r"\d{3}-\d{3}-\d{4}", phone) is None:
-    result = re.sub(r"(\d{3})-(\d{3}-(\d{4}[\.]*))$", r"(\1) \2", phone)
-  else:
-    result = phone
+  result = re.sub(r"(\d{3})-(\d{3})-(\d{4}\.?)$", r"(\1) \2-\3", phone)
   return result
 
 print(convert_phone_number("My number is 212-345-9999.")) # My number is (212) 345-9999.
 print(convert_phone_number("Please call 888-555-1234")) # Please call (888) 555-1234
 print(convert_phone_number("123-123-12345")) # 123-123-12345
 print(convert_phone_number("Phone number of Buckingham Palace is +44 303 123 7300")) # Phone number of Buckingham Palace is +44 303 123 7300
-print("\n\n")

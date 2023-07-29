@@ -9,3 +9,4 @@ def validate_user(username, minlen):
     if not username.isalnum():
         return False
     return True
+
